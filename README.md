@@ -13,17 +13,7 @@ A TypeScript server implementing the Model Context Protocol (MCP) that provides 
 ## Requirements
 
 - Node.js 18 or later
-- Access to a `hexdocs_mcp` generated SQLite database (requires running `mix hex.docs.mcp fetch PACKAGE` on the desired packages first)
-
-## Installation
-
-```bash
-# Install globally
-npm install -g hexdocs_mcp_server
-
-# Or install in your project
-npm install hexdocs_mcp_server
-```
+- Access to a [hexdocs_mcp](https://github.com/bradleygolden/hexdocs_mcp) generated SQLite database (requires running `mix hex.docs.mcp fetch PACKAGE` on the desired packages first)
 
 ## Configuration
 
@@ -32,22 +22,6 @@ The server looks for the SQLite database created by the `hexdocs_mcp` package. B
 ```bash
 # Example: Set custom database path
 export HEXDOCS_MCP_PATH=/path/to/custom/directory
-```
-
-## Usage
-
-```bash
-# Start the server
-npx hexdocs-mcp-server
-
-# Specify custom database path
-npx hexdocs-mcp-server --db-path=/path/to/db
-
-# Search from CLI
-npx hexdocs-mcp-server search "how to use channels" phoenix
-
-# List available packages
-npx hexdocs-mcp-server list-packages
 ```
 
 ## Integration
@@ -61,7 +35,10 @@ Add this to your `mcp.json`:
   "mcpServers": {
     "hexdocs-mcp-server": {
       "command": "npx",
-      "args": ["hexdocs-mcp-server"]
+      "args": [
+        "-y",
+        "hexdocs-mcp-server"
+      ]
     }
   }
 }
@@ -69,7 +46,7 @@ Add this to your `mcp.json`:
 
 ### Pro Tip
 
-You can use the `hexdocs_mcp_server` library within your AI tooling to programmatically generate commands for adding packages using `mix hex.docs.mcp` so you don't have to manually. For example, an AI might find that you don't have the documentation for a given tool and then recognize it can run `mix hex.docs.mcp fetch ...`.
+When you're vibing with an agent and you find that you don't have the given documentation for a specific tool, you can have the AI run the `mix hex.docs.mcp fetch ...` command for you so you don't have to.
 
 ## Contributing
 
